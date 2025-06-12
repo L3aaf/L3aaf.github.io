@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on L3AAF</title>
-        <link>https://example.com/tags/</link>
+        <link>https://l3aaf.github.io/tags/</link>
         <description>Recent content in Tags on L3AAF</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>L3AAF</copyright><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>L3AAF</copyright><atom:link href="https://l3aaf.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

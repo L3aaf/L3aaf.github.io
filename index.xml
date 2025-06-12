@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>L3AAF</title>
-        <link>https://example.com/</link>
+        <link>https://l3aaf.github.io/</link>
         <description>Recent content on L3AAF</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>L3AAF</copyright>
-        <lastBuildDate>Thu, 12 Jun 2025 00:43:54 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 12 Jun 2025 00:43:54 +0800</lastBuildDate><atom:link href="https://l3aaf.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>我的第一篇博客</title>
-        <link>https://example.com/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
+        <link>https://l3aaf.github.io/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
         <pubDate>Thu, 12 Jun 2025 00:43:54 +0800</pubDate>
         
-        <guid>https://example.com/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
+        <guid>https://l3aaf.github.io/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
         <description></description>
         </item>
         <item>
         <title>归档</title>
-        <link>https://example.com/archives/</link>
+        <link>https://l3aaf.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/archives/</guid>
+        <guid>https://l3aaf.github.io/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://example.com/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://l3aaf.github.io/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://l3aaf.github.io/%E5%85%B3%E4%BA%8E/</guid>
         <description></description>
         </item>
         <item>
         <title>搜索</title>
-        <link>https://example.com/search/</link>
+        <link>https://l3aaf.github.io/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/search/</guid>
+        <guid>https://l3aaf.github.io/search/</guid>
         <description></description>
         </item>
         <item>
         <title>友情链接</title>
-        <link>https://example.com/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
+        <link>https://l3aaf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://l3aaf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
         <description></description>
         </item>
         
