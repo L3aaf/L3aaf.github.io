@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <copyright>L3AAF</copyright>
         <lastBuildDate>Thu, 12 Jun 2025 00:43:54 +0800</lastBuildDate><atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Index_zh Cn</title>
-        <link>https://example.com/p/index_zh-cn/</link>
+        <title>我的第一篇博客</title>
+        <link>https://example.com/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
         <pubDate>Thu, 12 Jun 2025 00:43:54 +0800</pubDate>
         
-        <guid>https://example.com/p/index_zh-cn/</guid>
+        <guid>https://example.com/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
         <description></description>
         </item>
         

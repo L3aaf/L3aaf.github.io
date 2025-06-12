@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="平平无奇的个人博客">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="记录嵌入式学习过程">
 <title>Posts</title>
 
 <link rel='canonical' href='https://example.com/post/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Posts">
-<meta property='og:description' content="平平无奇的个人博客">
+<link rel="stylesheet" href="/scss/style.min.d26da9fd8ba35afb482a50a23fa558fc1c26275572f201db8a91b9684fba3635.css"><meta property='og:title' content="Posts">
+<meta property='og:description' content="记录嵌入式学习过程">
 <meta property='og:url' content='https://example.com/post/'>
 <meta property='og:site_name' content='L3AAF'>
 <meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-06-12T00:43:54&#43;08:00 '/>
 <meta name="twitter:title" content="Posts">
-<meta name="twitter:description" content="平平无奇的个人博客"><link rel="alternate" type="application/rss&#43;xml" href="https://example.com/post/index.xml">
+<meta name="twitter:description" content="记录嵌入式学习过程"><link rel="alternate" type="application/rss&#43;xml" href="https://example.com/post/index.xml">
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -70,7 +70,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">L3AAF</a></h1>
-            <h2 class="site-description">平平无奇的个人博客</h2>
+            <h2 class="site-description">记录嵌入式学习过程</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -357,9 +357,9 @@
     <section class="article-list--compact">
         
             <article>
-    <a href="/p/index_zh-cn/">
+    <a href="/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
         <div class="article-details">
-            <h2 class="article-title">Index_zh Cn</h2>
+            <h2 class="article-title">我的第一篇博客</h2>
             <footer class="article-time">
                 <time datetime='2025-06-12T00:43:54&#43;08:00'>Jun 12, 2025</time>
             </footer>
@@ -388,7 +388,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.99ce1801c4bad426a42fc436add4721e149159dbb598636e9578fd59cf778c83.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -399,6 +399,70 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+	server="netease"
+	type="playlist"
+    fixed="true"
+	id="13832166034">
+</meting-js>
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+
+    
+    <script src=https://example.com/js/topbar.min.js></script>
+
+
+
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container"
+        ]
+    })
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255,  255, 255, 1)', 
+            '1.0': 'rgba(0, 149, 234,  1)' 
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        
+        topbar.show();
+    })
+
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            
+            setTimeout(() => {
+                pjax._handleResponse(responseText, request, href, options);
+            }, 500);
+        } else {
+            
+        }
+    }
+
+    document.addEventListener('pjax:complete', () => {
+        
+        window.Stack.init();
+        topbar.hide();
+    })
 </script>
 
     </body>
