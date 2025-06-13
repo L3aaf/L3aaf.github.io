@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://l3aaf.github.io/tags/hugo/'>
 
-<link rel="stylesheet" href="/scss/style.min.af1d026385b4434cf188613b510b6fb995681ada2f8c6dfcbd1a9a792dc726dc.css"><meta property='og:title' content="Tag: Hugo - L3AAF">
+<link rel="stylesheet" href="/scss/style.min.87af2a60c52692cc5a7f9b32b43c3903a0651985d654603cd58570b56f5dcbfe.css"><meta property='og:title' content="Tag: Hugo - L3AAF">
 <meta property='og:description' content="记录嵌入式学习过程">
 <meta property='og:url' content='https://l3aaf.github.io/tags/hugo/'>
 <meta property='og:site_name' content='L3AAF'>
@@ -441,6 +441,10 @@
                 
                 let bodyClass = newDom.body.className;
                 document.body.setAttribute("class", bodyClass)
+                let newTitle = newDom.querySelector("title");
+                if (newTitle) {
+                    document.title = newTitle.innerText;
+                }
             }
             
                 pjax._handleResponse(responseText, request, href, options);
@@ -460,15 +464,20 @@
 
 <style>
     @font-face {
-      font-family: 'ChildFunSans-Demo';
-      src: url(https://l3aaf.github.io/font/ChildFunSans-Demo.ttf) format('truetype');
+        font-family: 'ChildFunSans-Demo';
+        src: url(https://l3aaf.github.io/font/ChildFunSans-Demo.ttf) format('truetype');
+        unicode-range: U+4E00-9FFF;  
     }
-  
+
+     
+
+     
     :root {
-      --base-font-family: 'ChildFunSans-Demo';
-      --code-font-family: 'ChildFunSans-Demo';
+        --base-font-family: 'ChildFunSans-Demo', 'ChildFunSans-Demo', monospace;
+        --code-font-family: 'Ubuntu Mono', 'ChildFunSans-Demo', monospace;
     }
-  </style>
+
+</style>
 
 
 <style>
@@ -634,41 +643,42 @@
     }
 </style>
 <script src=https://l3aaf.github.io/background/sakura.js></script>
+
 <div class="loading">
-  <div class="sharingon">
-    <div class="ring">
-      <div class="to"></div>
-      <div class="to"></div>
-      <div class="to"></div>
-      <div class="circle"></div>
-    </div>
+  <div class="spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 </div>
 
 <style>
+   
+  html.loading-lock,
+  body.loading-lock {
+    overflow: hidden !important;
+    height: 100% !important;
+    pointer-events: none;
+  }
+
   .loading {
     position: fixed;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99;
-    zoom: 3.0;
-    background-color: #f5f5fa;
-  }
-
-  .animated-stop {
-    animation-play-state: paused !important;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.6);;
+    pointer-events: all;
   }
 
   .scaleAndFadeout {
     animation: scaleAndFadeOut 1.5s forwards;
   }
 
-   
   @keyframes scaleAndFadeOut {
     0% {
       transform: scale(1);
@@ -680,110 +690,86 @@
     }
   }
 
-   
-  .sharingon {
+  .spinner {
+    width: 44px;
+    height: 44px;
+    animation: spinner-y0fdc1 2s infinite ease;
+    transform-style: preserve-3d;
     position: relative;
-    width: 6em;
-    height: 6em;
-    background-color: red;
-    border: 6px solid black;
-    animation: rot 1s ease-in-out infinite;
   }
 
-  .ring {
+  .spinner > div {
+    background-color: rgba(0, 77, 255, 0.2);
+    height: 100%;
     position: absolute;
-    content: "";
-    left: 50%;
-    top: 50%;
-    width: 3.5em;
-    height: 3.5em;
-    border: 4px solid rgb(110, 13 ,13 ,0.5);
-    transform: translate(-50%,-50%);
+    width: 100%;
+    border: 2px solid #004dff;
   }
 
-  .sharingon, .ring, .to,.circle {
-    border-radius: 50%;
+  .spinner div:nth-of-type(1) {
+    transform: translateZ(-22px) rotateY(180deg);
   }
 
-  .to,.circle {
-    position: absolute;
-    content: "";
-    width: 0.9em;
-    height: 0.9em;
-    background-color: black;
+  .spinner div:nth-of-type(2) {
+    transform: rotateY(-270deg) translateX(50%);
+    transform-origin: top right;
   }
 
-  .to:nth-child(1) {
-    top: -0.5em;
-    left: 50%;
-    transform: translate(-40%);
+  .spinner div:nth-of-type(3) {
+    transform: rotateY(270deg) translateX(-50%);
+    transform-origin: center left;
   }
 
-  .to::before {
-    content: "";
-    position: absolute;
-    top: -0.5em;
-    right: -0.2em;
-    width: 1.1em;
-    height: 0.9em;
-    box-sizing: border-box;
-    border-left: 16px solid black;
-    border-radius: 100% 0 0;
+  .spinner div:nth-of-type(4) {
+    transform: rotateX(90deg) translateY(-50%);
+    transform-origin: top center;
   }
 
-  .to:nth-child(2) {
-    bottom: 0.5em;
-    left: -0.35em;
-    transform: rotate(-120deg);
+  .spinner div:nth-of-type(5) {
+    transform: rotateX(-90deg) translateY(50%);
+    transform-origin: bottom center;
   }
 
-  .to:nth-child(3) {
-    bottom: 0.5em;
-    right: -0.35em;
-    transform: rotate(120deg);
+  .spinner div:nth-of-type(6) {
+    transform: translateZ(22px);
   }
 
-  .circle {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    box-shadow: 0 0 20px 1px;
-    width: 1em;
-    height: 1em;
-  }
-
-  @keyframes rot {
+  @keyframes spinner-y0fdc1 {
     0% {
-      transform: rotate(0deg);
+      transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
     }
-
+    50% {
+      transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+    }
     100% {
-      transform: rotate(360deg);
+      transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
     }
   }
 </style>
 
 <script>
   function initLoading() {
-    let loading = document.querySelector(".loading");
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      
-      loadFinish();
-      
+    document.documentElement.classList.add("loading-lock");
+    document.body.classList.add("loading-lock");
+
+    const loading = document.querySelector(".loading");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        loadFinish();
+      }, 1000);
+
       setTimeout(() => {
         loading.style.display = "none";
-      }, 1500)
+        document.documentElement.classList.remove("loading-lock");
+        document.body.classList.remove("loading-lock");
+      }, 1500);
     });
   }
 
   function loadFinish() {
-    
-    let sharingon= document.querySelector(".sharingon");
-    sharingon.classList.add("animated-stop")
-    
-    let loading = document.querySelector(".loading");
-    loading.classList.add("scaleAndFadeout")
+    const loading = document.querySelector(".loading");
+    loading.classList.add("scaleAndFadeout");
   }
 
   initLoading();
