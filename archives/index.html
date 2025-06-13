@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://l3aaf.github.io/archives/'>
 
-<link rel="stylesheet" href="/scss/style.min.37b2682e228fad457d1176f55185a98cbee8e6f5bb5f8d0048c4151525478553.css"><meta property='og:title' content="归档">
+<link rel="stylesheet" href="/scss/style.min.af1d026385b4434cf188613b510b6fb995681ada2f8c6dfcbd1a9a792dc726dc.css"><meta property='og:title' content="归档">
 <meta property='og:description' content="">
 <meta property='og:url' content='https://l3aaf.github.io/archives/'>
 <meta property='og:site_name' content='L3AAF'>
@@ -21,7 +21,7 @@
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
+                localStorage.setItem(colorSchemeKey, "dark");
             }
         })();
     </script><script>
@@ -306,17 +306,6 @@
     </a>
 </article>
             
-                <article>
-    <a href="/p/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-        <div class="article-details">
-            <h2 class="article-title">我的第一篇博客</h2>
-            <footer class="article-time">
-                <time datetime='2025-06-12T00:43:54&#43;08:00'>2025-06-12</time>
-            </footer>
-        </div>
-    </a>
-</article>
-            
         </div>
     </div>
     
@@ -371,7 +360,6 @@
     <script src=https://l3aaf.github.io/js/topbar.min.js></script>
 
 
-
 <script>
     var pjax = new Pjax({
         selectors: [
@@ -403,9 +391,7 @@
                 document.body.setAttribute("class", bodyClass)
             }
             
-            setTimeout(() => {
                 pjax._handleResponse(responseText, request, href, options);
-            }, 500);
         } else {
             
         }
@@ -415,6 +401,8 @@
         
         window.Stack.init();
         topbar.hide();
+        initScrollTop();
+        initCodeMoreBox();
     })
 </script>
 
@@ -523,5 +511,76 @@
 
     initScrollTop();
 </script>
+<style>
+    .highlight {
+        max-height: 200px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .code-show {
+        max-height: none !important;
+    }
+
+    .code-more-box {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        text-align: center;
+        background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+        cursor: pointer;
+        font-size: 14px;
+        color: #000000;
+        padding: 6px 0;
+        user-select: none;
+    }
+</style>
+
+<script>
+    function initCodeMoreBox() {
+        let codeBlocks = document.querySelectorAll(".highlight");
+        if (!codeBlocks) return;
+
+        codeBlocks.forEach(codeBlock => {
+            if (codeBlock.querySelector('.code-more-box')) return;
+            if (codeBlock.scrollHeight <= codeBlock.clientHeight) return;
+
+            let box = document.createElement('div');
+            box.classList.add('code-more-box');
+            box.textContent = '展开 ▼';
+
+            box.addEventListener('click', () => {
+                const expanded = codeBlock.classList.toggle('code-show');
+                box.textContent = expanded ? '收起 ▲' : '展开 ▼';
+
+                if (!expanded) {
+                    const offset = codeBlock.getBoundingClientRect().top + window.pageYOffset - 60;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+
+                window.dispatchEvent(new Event('resize'));
+            });
+
+            codeBlock.appendChild(box);
+        });
+    }
+
+    initCodeMoreBox();
+
+    document.addEventListener('pjax:complete', () => {
+        initCodeMoreBox();
+    });
+</script>
+
+<style>
+    body {
+        background: url(https://l3aaf.github.io/background/LonelyCAT.png) no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+    }
+</style>
+
     </body>
 </html>
