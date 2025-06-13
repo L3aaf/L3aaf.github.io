@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>嵌入式学习 on L3AAF</title>
+        <link>https://l3aaf.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0/</link>
+        <description>Recent content in 嵌入式学习 on L3AAF</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>L3AAF</copyright><atom:link href="https://l3aaf.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>
