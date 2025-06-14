@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Stack主题 on L3AAF</title>
-        <link>https://l3aaf.github.io/tags/stack%E4%B8%BB%E9%A2%98/</link>
+        <link>https://dq-blog.xyz/tags/stack%E4%B8%BB%E9%A2%98/</link>
         <description>Recent content in Stack主题 on L3AAF</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>L3AAF</copyright>
-        <lastBuildDate>Fri, 13 Jun 2025 12:02:54 +0800</lastBuildDate><atom:link href="https://l3aaf.github.io/tags/stack%E4%B8%BB%E9%A2%98/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 13 Jun 2025 12:02:54 +0800</lastBuildDate><atom:link href="https://dq-blog.xyz/tags/stack%E4%B8%BB%E9%A2%98/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>测试博客文章</title>
-        <link>https://l3aaf.github.io/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</link>
+        <link>https://dq-blog.xyz/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</link>
         <pubDate>Thu, 12 Jun 2025 10:00:00 +0800</pubDate>
         
-        <guid>https://l3aaf.github.io/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</guid>
+        <guid>https://dq-blog.xyz/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</guid>
         <description>&lt;p&gt;欢迎来到我的测试博客文章！&lt;/p&gt;
 &lt;p&gt;这是在 &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo&lt;/a&gt; 框架下，使用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

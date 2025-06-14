@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>L3AAF</title>
-        <link>https://l3aaf.github.io/</link>
+        <link>https://dq-blog.xyz/</link>
         <description>Recent content on L3AAF</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>L3AAF</copyright><atom:link href="https://l3aaf.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>L3AAF</copyright><atom:link href="https://dq-blog.xyz/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>测试博客文章</title>
-        <link>https://l3aaf.github.io/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</link>
+        <link>https://dq-blog.xyz/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</link>
         <pubDate>Thu, 12 Jun 2025 10:00:00 +0800</pubDate>
         
-        <guid>https://l3aaf.github.io/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</guid>
+        <guid>https://dq-blog.xyz/p/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</guid>
         <description>&lt;p&gt;欢迎来到我的测试博客文章！&lt;/p&gt;
 &lt;p&gt;这是在 &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo&lt;/a&gt; 框架下，使用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -235,34 +235,34 @@
         </item>
         <item>
         <title>归档</title>
-        <link>https://l3aaf.github.io/archives/</link>
+        <link>https://dq-blog.xyz/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://l3aaf.github.io/archives/</guid>
+        <guid>https://dq-blog.xyz/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://l3aaf.github.io/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://dq-blog.xyz/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://l3aaf.github.io/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://dq-blog.xyz/%E5%85%B3%E4%BA%8E/</guid>
         <description></description>
         </item>
         <item>
         <title>搜索</title>
-        <link>https://l3aaf.github.io/search/</link>
+        <link>https://dq-blog.xyz/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://l3aaf.github.io/search/</guid>
+        <guid>https://dq-blog.xyz/search/</guid>
         <description></description>
         </item>
         <item>
         <title>友情链接</title>
-        <link>https://l3aaf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
+        <link>https://dq-blog.xyz/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://l3aaf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://dq-blog.xyz/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
         <description></description>
         </item>
         
