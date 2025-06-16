@@ -7,30 +7,30 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>L3AAF</copyright>
-        <lastBuildDate>Mon, 16 Jun 2025 02:59:39 +0800</lastBuildDate><atom:link href="https://dq-blog.xyz/tags/stm32/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 16 Jun 2025 12:30:02 +0800</lastBuildDate><atom:link href="https://dq-blog.xyz/tags/stm32/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>STM32在Linux下的环境搭建</title>
         <link>https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
         <pubDate>Fri, 13 Jun 2025 10:00:00 +0800</pubDate>
         
         <guid>https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
         <description>&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
-    &lt;p&gt;📌 本文介绍如何在 Linux 系统下配置 STM32 开发环境，包括必要的工具安装、驱动配置、调试支持等。&lt;/p&gt;&lt;/blockquote&gt;
+    &lt;p&gt;📌 &lt;strong&gt;TIP&lt;/strong&gt;&lt;br&gt;
+本文介绍如何在 Linux 系统下配置 STM32 开发环境，包括必要的工具安装、驱动配置、调试支持等。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;-目录&#34;&gt;📚 目录
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%a6%82%e8%bf%b0&#34; &gt;开发环境概述&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%89%e8%a3%85-stm32cubemx&#34; &gt;安装 STM32CubeMX&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%89%e8%a3%85-CLion&#34; &gt;安装CLion&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%89%e8%a3%85%e5%90%84%e7%a7%8d%e5%b7%a5%e5%85%b7%e9%93%be-stm32cubeclt&#34; &gt;安装各种工具链 （STM32CubeCLT）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%89%e8%a3%85-clion&#34; &gt;安装 CLion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%89%e8%a3%85%e5%b7%a5%e5%85%b7%e9%93%be-stm32cubeclt&#34; &gt;安装工具链 STM32CubeCLT&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%88%9b%e5%bb%ba%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%b7%a5%e7%a8%8b&#34; &gt;创建第一个工程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e4%b8%8e%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88&#34; &gt;常见问题与解决方案&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;开发环境概述&#34;&gt;开发环境概述
-&lt;/h2&gt;&lt;p&gt;测试环境为：&lt;/p&gt;
-&lt;blockquote class=&#34;alert alert-note&#34;&gt;
-    &lt;ul&gt;
+&lt;/h2&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;💡 &lt;strong&gt;测试环境说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;操作系统：Ubuntu 20.04 LTS&lt;/li&gt;
-&lt;li&gt;MCU型号：STM32F103C8T6&lt;/li&gt;
+&lt;li&gt;MCU 型号：STM32F103C8T6&lt;/li&gt;
 &lt;li&gt;开发工具：STM32CubeMX、CLion、STM32CubeCLT&lt;/li&gt;
 &lt;li&gt;调试接口：ST-Link v2&lt;/li&gt;
 &lt;/ul&gt;&lt;/blockquote&gt;
@@ -38,89 +38,100 @@
 &lt;hr&gt;
 &lt;h2 id=&#34;安装-stm32cubemx&#34;&gt;安装 STM32CubeMX
 &lt;/h2&gt;&lt;blockquote class=&#34;alert alert-warn&#34;&gt;
-    &lt;p&gt;我在搜索教程时看到有人提到过因为CubeMX是依赖于JAVA环境的，在安装CubeMX之前需要安装JDK，我之前因为一些原因已经安装过了，这里不再赘述我的安装过程，如果遇到问题请自行排查。&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;STM32CubeMX 是 ST 官方提供的图形化初始化配置工具，可帮助生成 HAL 库工程框架。&lt;/p&gt;
+    &lt;p&gt;⚠️ &lt;strong&gt;注意：&lt;/strong&gt;&lt;br&gt;
+STM32CubeMX 依赖 Java 环境，安装前请确保系统已正确配置 JDK。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;STM32CubeMX 是 ST 官方提供的图形化初始化配置工具，可生成 HAL 库工程框架。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;前往 ST 官方网站注册并下载：&lt;a class=&#34;link&#34; href=&#34;https://www.st.com.cn/zh/development-tools/stm32cubemx.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;STM32CubeMX 下载地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;点击获取软件按钮并选择Linux最新版本：&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/download.png&#34;
-	width=&#34;1029&#34;
-	height=&#34;354&#34;
-	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/download_hu_8c8493082aee643e.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/download_hu_b54fecb19e0afc1d.png 1024w&#34;
+&lt;li&gt;前往 &lt;a class=&#34;link&#34; href=&#34;https://www.st.com.cn/zh/development-tools/stm32cubemx.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ST 官方下载页面&lt;/a&gt;，下载最新版 Linux 安装包。&lt;/li&gt;
+&lt;li&gt;下载后解压到你想存放的位置（例如 &lt;code&gt;~/Iot/&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;解压后文件结构如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/unzip.png&#34;
+	width=&#34;424&#34;
+	height=&#34;201&#34;
+	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/unzip_hu_16ac3c77ff56d3d1.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/unzip_hu_e515f8e0a1f30fe.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img.png&#34;
+		alt=&#34;解压内容&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;290&#34;
-		data-flex-basis=&#34;697px&#34;
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;506px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;下载完成后提取到自己想存放的位置，我这里是在home目录下创建了一个Iot文件夹，提取完成后进入文件夹能看见两个文件和一个文件夹：
-&lt;div style=&#34;text-align: center;&#34;&gt;
-   &lt;img src=&#34;static/images/unzip.png&#34; alt=&#34;&#34; style=&#34;max-width: 100%; height: auto;&#34; /&gt;
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;📘 &lt;code&gt;Readme.html&lt;/code&gt; 是官方用户手册，可供参考。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;授予安装文件执行权限并安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x SetupSTM32CubeMX-6.14.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./SetupSTM32CubeMX-6.14.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装过程与 Windows 类似，按照提示操作即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后界面如下：&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
-    &lt;ul&gt;
-&lt;li&gt;其中Readme.html为官方用户手册，大致介绍的是ST官方的工具以及各个操作系统的CubeMX安装和卸载步骤的，有兴趣可以自行查看。&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
-&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;这里继续Linux下CubeMX安装步骤&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;赋予安装文件可执行权限：&lt;code&gt;chmod +x SetupSTM32CubeMX-6.14.1&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;在当前目录下打开命令行中运行：&lt;code&gt;./SetupSTM32CubeMX-6.14.1&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;剩下的步骤跟Windows下安装就是一样的了，同意条款，选定安装位置等，此处不再赘述。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;5&#34;&gt;
-&lt;li&gt;安装完成
-&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/cubemx.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/cubemx.png&#34;
 	width=&#34;1451&#34;
 	height=&#34;836&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/cubemx_hu_a77fa4750d452d7d.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/cubemx_hu_7a3eb64f9f3b6e37.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;cubemx.png&#34;
+		alt=&#34;安装完成&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;173&#34;
 		data-flex-basis=&#34;416px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;安装-clion&#34;&gt;安装 CLion
-&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;Windows&lt;/code&gt;环境下只使用过&lt;code&gt;Keil 5&lt;/code&gt;作为开发工具，前段时间刷到&lt;code&gt;B站UP主：keysking&lt;/code&gt;的
-CLion配置STM32开发环境视频:&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1pnjizYEAk/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;爽！手把手教你用CLion开发STM32【大人，时代变啦！！！】&lt;/a&gt;，
-所以在Linux的嵌入式开发过程中也尝试一下，&lt;code&gt;JetBrains&lt;/code&gt;家的IDE还是很好用的。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;Windows 下常用 Keil 开发 STM32，本次尝试使用 JetBrains 的 CLion 进行跨平台开发，参考了 B站 UP 主 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1pnjizYEAk/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;keysking 的教学视频&lt;/a&gt;。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;在Jetbrains的官网找到CLion的下载链接：&lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/clion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;CLION&lt;/a&gt;，点击Download，选择Linux的版本。&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/clion_download.png&#34;
+&lt;li&gt;前往 &lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/clion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CLion 官网&lt;/a&gt; 下载 Linux 安装包。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/clion_download.png&#34;
 	width=&#34;1242&#34;
 	height=&#34;622&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/clion_download_hu_73b80ae44ef927c.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/clion_download_hu_8c24572bd91564bf.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;clion_download.png&#34;
+		alt=&#34;CLion 下载&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;199&#34;
 		data-flex-basis=&#34;479px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;下载到自己记得住的地方然后解压，进入文件夹&lt;code&gt;~/CLion/bin&lt;/code&gt;目录下，运行CLion：&lt;code&gt;./clion&lt;/code&gt;&lt;br&gt;
-到这里就算是安装完成了，但是没有图标启动很不方便，所以下面我们为CLion创建一个图标。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;步骤 1：创建 &lt;code&gt;.desktop &lt;/code&gt;文件
-在终端中执行以下命令创建文件：&lt;/li&gt;
-&lt;/ul&gt;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;解压后进入 &lt;code&gt;~/CLion/bin&lt;/code&gt; 目录，运行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./clion
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为方便启动，可创建桌面图标：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -129,10 +140,7 @@ CLion配置STM32开发环境视频:&lt;a class=&#34;link&#34; href=&#34;https://
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano ~/.local/share/applications/clion.desktop
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;步骤 2：填入以下内容
-将以下内容复制粘贴进去（请根据你的实际安装路径修改）：&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;&lt;p&gt;粘贴以下内容（路径请根据实际修改）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -159,53 +167,67 @@ CLion配置STM32开发环境视频:&lt;a class=&#34;link&#34; href=&#34;https://
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;StartupNotify&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote class=&#34;alert alert-warn&#34;&gt;
-    &lt;p&gt;请注意：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;替换 /home/yourusername/apps/clion-2025.1/ 为你自己的实际路径。&lt;/li&gt;
-&lt;li&gt;CLion 图标通常位于 bin/clion.svg，如不存在可以下载或使用其它图标。&lt;/li&gt;
-&lt;li&gt;这样就能在你的应用程序里找到CLion了，
-当然，你想跟Windows一样在桌面存放就将这个.desktop文件copy一份到你系统桌面的文件夹并且在桌面对着这个文件右键允许启动就OK了。&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ 替换路径为实际安装路径，可将 &lt;code&gt;.desktop&lt;/code&gt; 文件复制到桌面以便图形化启动。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;安装各种工具链-stm32cubeclt&#34;&gt;安装各种工具链 （STM32CubeCLT）
-&lt;/h2&gt;&lt;p&gt;在CubeMX的右下角有External Tools选项，在里面找到&lt;code&gt;STM32CubeCLT&lt;/code&gt;点击，跳转到官网进行下载。
-&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_2.png&#34;
+&lt;h2 id=&#34;安装工具链-stm32cubeclt&#34;&gt;安装工具链 STM32CubeCLT
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在 STM32CubeMX 右下角点击 &lt;strong&gt;External Tools&lt;/strong&gt;，进入 ST 官网下载 STM32CubeCLT。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_2.png&#34;
 	width=&#34;1431&#34;
 	height=&#34;781&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_2_hu_ad894a99b7a8241d.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_2_hu_dc5927f8ff2b1ef5.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_2.png&#34;
+		alt=&#34;CLT 下载入口&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;183&#34;
 		data-flex-basis=&#34;439px&#34;
 	
-&gt;
-下载并解压，在解压的文件夹下打开终端并输入：&lt;br&gt;&lt;/p&gt;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载并解压后，在终端执行：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;777&lt;/span&gt; st-stm32cubeclt_xx_amd64.sh 
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;777&lt;/span&gt; st-stm32cubeclt_xx_amd64.sh
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./st-stm32cubeclt_xx_amd64.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote class=&#34;alert alert-warn&#34;&gt;
-    &lt;p&gt;给安装程序最高权限,XX为你对应的版本号文件名，最好将命令行全屏，不然很容易按过头&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;安装一直Y同意就行了，然后是安装路径：&lt;code&gt;[/home/xx/st/stm32cubeclt_1.18.0] &lt;/code&gt;&lt;br&gt;
-最后出现：&lt;code&gt;STM32CubeCLT installed successfully&lt;/code&gt;就是安装成功了，路径就是刚刚设置的路径。
-&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img.png&#34;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;code&gt;xx&lt;/code&gt; 为具体版本号，例如 &lt;code&gt;1.18.0&lt;/code&gt;，建议全屏运行安装程序避免错过条款提示。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装过程中全程按 &lt;code&gt;Y&lt;/code&gt; 同意协议，设置安装路径（如 &lt;code&gt;/home/xx/st/stm32cubeclt_1.18.0&lt;/code&gt;）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装成功提示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;STM32CubeCLT installed successfully
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img.png&#34;
 	width=&#34;976&#34;
 	height=&#34;289&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_hu_9f7bcb0261eb83e9.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_hu_2503ab8b5392ef06.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img.png&#34;
+		alt=&#34;CLT 安装完成&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
@@ -213,203 +235,257 @@ CLion配置STM32开发环境视频:&lt;a class=&#34;link&#34; href=&#34;https://
 		data-flex-basis=&#34;810px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;安装完成后插上&lt;code&gt;STLink V2&lt;/code&gt;（不用插开发板），在CLT文件目录下运行&lt;code&gt;STLinkUpgrade.sh&lt;/code&gt;文件对你的STLink进行升级。&lt;/p&gt;
-&lt;blockquote class=&#34;alert alert-error&#34;&gt;
-    &lt;p&gt;安装完成后最好重启一下电脑，我在安装完成后CLion死活找不到arm-none-eabi-gcc等环境，
-排查了半天发现重启电脑就好了（PS:记得将STM32CubeCLT下的工具链写进环境变量文件&lt;code&gt;/.bashrc&lt;/code&gt;里）。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;插入 ST-Link V2（不接开发板），运行 CLT 目录下的 &lt;code&gt;STLinkUpgrade.sh&lt;/code&gt; 升级调试器固件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;添加环境变量：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;export PATH=$PATH:/home/xx/st/stm32cubeclt_1.18.0/bin&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;❗ 安装完成建议重启系统，否则 CLion 可能找不到 &lt;code&gt;arm-none-eabi-gcc&lt;/code&gt; 等工具。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;创建第一个工程&#34;&gt;创建第一个工程
-&lt;/h2&gt;&lt;p&gt;打开CLion，CLion现在对非商业全免费，选择非商业许可证使用即可。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;选择新建项目&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_4.png&#34;
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;启动 CLion，选择非商业许可证。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择新建 STM32 项目：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_4.png&#34;
 	width=&#34;821&#34;
 	height=&#34;669&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_4_hu_30d993cfb934f751.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_4_hu_e4e7bed799c4714a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_4.png&#34;
+		alt=&#34;新建项目&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;122&#34;
 		data-flex-basis=&#34;294px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;选择STM32CubeMX并且配置好STM32CubeMX路径&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_5.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;配置 STM32CubeMX 路径：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_5.png&#34;
 	width=&#34;821&#34;
 	height=&#34;669&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_5_hu_8ae418d36ac8086.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_5_hu_e214e9a59351efa7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_5.png&#34;
+		alt=&#34;配置路径&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;122&#34;
 		data-flex-basis=&#34;294px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;点击启动STM32CubeMX，并且新建一个项目，我这里使用STM32F103C8T6进行测试&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_6.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;启动 CubeMX，新建项目，选择芯片（如 STM32F103C8T6）：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_6.png&#34;
 	width=&#34;1401&#34;
 	height=&#34;888&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_6_hu_71976bfde26f52dc.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_6_hu_bc40e7290055bb48.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_6.png&#34;
+		alt=&#34;选择芯片&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;157&#34;
 		data-flex-basis=&#34;378px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;配置调试接口为SW，并且将PC13设置为GPIO_Output模式&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_7.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;配置调试接口（SW），设置 PC13 为 GPIO_Output：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_7.png&#34;
 	width=&#34;1921&#34;
 	height=&#34;949&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_7_hu_9cb339ec4ee13b6a.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_7_hu_431cd0587c41f90f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_7.png&#34;
+		alt=&#34;配置引脚&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;202&#34;
 		data-flex-basis=&#34;485px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;进入工程配置&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_8.png&#34;
-	width=&#34;1921&#34;
-	height=&#34;949&#34;
-	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_8_hu_9ebc93dd6f2f2a10.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_8_hu_4492b09725355f96.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img_8.png&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;202&#34;
-		data-flex-basis=&#34;485px&#34;
-	
-&gt;&lt;/li&gt;
-&lt;li&gt;填入工程路径&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_9.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;设置工程路径：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_9.png&#34;
 	width=&#34;821&#34;
 	height=&#34;669&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_9_hu_9f1f84a3c09b7123.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_9_hu_def67d6e41875d77.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_9.png&#34;
+		alt=&#34;设置路径&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;122&#34;
 		data-flex-basis=&#34;294px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;在工具链中配置好GCC和NinJa&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_10.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;配置工具链，使用 GCC 和 Ninja：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_10.png&#34;
 	width=&#34;953&#34;
 	height=&#34;701&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_10_hu_c5d5cdecb492f425.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_10_hu_2cf5d6690f2ae3c8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_10.png&#34;
+		alt=&#34;工具链配置&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;135&#34;
 		data-flex-basis=&#34;326px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;选择刚配置好的工具链并勾选上重新加载cmake文件&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_11.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;勾选 &lt;strong&gt;Reload CMake Project&lt;/strong&gt;，确保路径生效：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_11.png&#34;
 	width=&#34;825&#34;
 	height=&#34;659&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_11_hu_a5365137774806e0.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_11_hu_2836db069bb0a30b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_11.png&#34;
+		alt=&#34;Reload 设置&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;125&#34;
 		data-flex-basis=&#34;300px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;在高级设置中找到启用调试服务器选项&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_12.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;启用调试服务器：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_12.png&#34;
 	width=&#34;953&#34;
 	height=&#34;701&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_12_hu_cc1d24878562932d.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_12_hu_fbe7830028f76e2a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_12.png&#34;
+		alt=&#34;启用调试&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;135&#34;
 		data-flex-basis=&#34;326px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;在右上角选择编辑调试服务器，配置好STLink的调试器就可以愉快的写代码啦！&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_14.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;10&#34;&gt;
+&lt;li&gt;配置 ST-Link：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_14.png&#34;
 	width=&#34;995&#34;
 	height=&#34;701&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_14_hu_14d4a378ff2df91f.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_14_hu_393b9f912b386c2.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_14.png&#34;
+		alt=&#34;ST-Link 设置&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;141&#34;
 		data-flex-basis=&#34;340px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;记得关掉持久会话，这样烧录后就不用手动复位了。&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_16.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;11&#34;&gt;
+&lt;li&gt;关闭持久会话以支持自动复位：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_16.png&#34;
 	width=&#34;1015&#34;
 	height=&#34;756&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_16_hu_3cd8003b58a97a7f.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_16_hu_fc2a4174b62dc055.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_16.png&#34;
+		alt=&#34;关闭持久会话&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;134&#34;
 		data-flex-basis=&#34;322px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;点灯！&lt;br&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div style=&#34;text-align: center;&#34;&gt;
-      &lt;img src=&#34;static/images/img_15.png&#34; alt=&#34;&#34; style=&#34;max-width: 100%; height: auto;&#34; /&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;点击右上角小三角进行烧录，在左下角服务中可以看到烧录信息。&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_17.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;12&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;烧录测试（点灯）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_15.png&#34;
+	width=&#34;639&#34;
+	height=&#34;300&#34;
+	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_15_hu_9bf6fae52dd50e93.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_15_hu_6e12c4108f9161db.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;点灯演示&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;213&#34;
+		data-flex-basis=&#34;511px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击右上角运行，左下角查看烧录日志：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_17.png&#34;
 	width=&#34;924&#34;
 	height=&#34;703&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_17_hu_64d840209939539f.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/img_17_hu_3077222e934ee256.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;img_17.png&#34;
+		alt=&#34;烧录中&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;131&#34;
 		data-flex-basis=&#34;315px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;li&gt;点灯成功！&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/LED.png&#34;
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;14&#34;&gt;
+&lt;li&gt;点灯成功 🎉：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/LED.png&#34;
 	width=&#34;1279&#34;
 	height=&#34;1706&#34;
 	srcset=&#34;https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/LED_hu_e2c478e4005cebea.png 480w, https://dq-blog.xyz/p/stm32%E5%9C%A8linux%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/static/images/LED_hu_8e03629843f75ed6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;LED.png&#34;
+		alt=&#34;点灯成功&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;74&#34;
 		data-flex-basis=&#34;179px&#34;
 	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&gt;&lt;/p&gt;
+&lt;hr&gt;
 </description>
         </item>
         
