@@ -764,6 +764,10 @@
     document.addEventListener('pjax:send', () => {
         
         topbar.show();
+        
+        if (window.mediumZoomInstance) {
+            window.mediumZoomInstance.detach();
+        }
     })
 
     pjax._handleResponse = pjax.handleResponse;
@@ -793,6 +797,15 @@
         topbar.hide();
         initScrollTop();
         initCodeMoreBox();
+        
+        if (window.mediumZoom) {
+            window.mediumZoomInstance = mediumZoom('[data-zoomable]');
+        }
+
+        
+        document.querySelectorAll('a > img[data-zoomable]').forEach(img => {
+            img.parentElement.addEventListener('click', e => e.preventDefault());
+        });
     })
 </script>
 

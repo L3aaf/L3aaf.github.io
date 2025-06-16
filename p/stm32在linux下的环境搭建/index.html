@@ -1018,6 +1018,10 @@ STM32CubeMX 依赖 Java 环境，安装前请确保系统已正确配置 JDK。<
     document.addEventListener('pjax:send', () => {
         
         topbar.show();
+        
+        if (window.mediumZoomInstance) {
+            window.mediumZoomInstance.detach();
+        }
     })
 
     pjax._handleResponse = pjax.handleResponse;
@@ -1047,6 +1051,15 @@ STM32CubeMX 依赖 Java 环境，安装前请确保系统已正确配置 JDK。<
         topbar.hide();
         initScrollTop();
         initCodeMoreBox();
+        
+        if (window.mediumZoom) {
+            window.mediumZoomInstance = mediumZoom('[data-zoomable]');
+        }
+
+        
+        document.querySelectorAll('a > img[data-zoomable]').forEach(img => {
+            img.parentElement.addEventListener('click', e => e.preventDefault());
+        });
     })
 </script>
 
